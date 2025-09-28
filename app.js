@@ -8,7 +8,8 @@ require('dotenv').config()
 var indexRouter = require('./routes/index')
 
 //folder admin
-const adminRouter = require('./routes/admin/admin')
+const adminDashboard = require('./routes/admin/commitee')
+const adminCommiteeRouter = require('./routes/admin/commitee')
 
 //folder auth
 const authRouter = require('./routes/auth/auth')
@@ -47,29 +48,30 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 
 //folder admin
-app.use('/admin', adminRouter)
+app.use('/admin/dashboard', adminDashboard)
+app.use('/admin/committee', adminCommiteeRouter)
 
 //folder auth
-app.use('/auth', authRouter)
+app.use('/', authRouter)
 
 //folder committee
-app.use('/candidate', candidateRouter)
+app.use('/committee/candidate', candidateRouter)
 app.use('/committee', committeeRouter)
-app.use('/dashboardCommittee', dashboardCommitteeRouter)
-app.use('/department', departmentRouter)
-app.use('/enrollmentYear', enrollmentYearRouter)
-app.use('/faculty', facultyRouter)
-app.use('/major', majorRouter)
-app.use('/participation', participationRouter)
+app.use('/committee/dashboardCommittee', dashboardCommitteeRouter)
+app.use('/committee/department', departmentRouter)
+app.use('/committee/enrollmentYear', enrollmentYearRouter)
+app.use('/committee/faculty', facultyRouter)
+app.use('/committee/major', majorRouter)
+app.use('/committee/participation', participationRouter)
 
 //folder participant
 app.use('/participant', participantRouter)
 
 //folder postVoting
-app.use('/postVoting', postVotingRouter)
+app.use('/', postVotingRouter)
 
 //folder preVoting
-app.use('/preVoting', preVotingRouter)
+app.use('/', preVotingRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
