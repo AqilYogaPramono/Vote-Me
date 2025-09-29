@@ -8,7 +8,7 @@ require('dotenv').config()
 var indexRouter = require('./routes/index')
 
 //folder admin
-const adminDashboard = require('./routes/admin/commitee')
+const adminDashboard = require('./routes/admin/dashboard')
 const adminCommiteeRouter = require('./routes/admin/commitee')
 
 //folder auth
@@ -55,14 +55,14 @@ app.use('/admin/committee', adminCommiteeRouter)
 app.use('/', authRouter)
 
 //folder committee
-app.use('/committee/candidate', candidateRouter)
-app.use('/committee', committeeRouter)
-app.use('/committee/dashboardCommittee', dashboardCommitteeRouter)
-app.use('/committee/department', departmentRouter)
-app.use('/committee/enrollmentYear', enrollmentYearRouter)
-app.use('/committee/faculty', facultyRouter)
-app.use('/committee/major', majorRouter)
-app.use('/committee/participation', participationRouter)
+app.use('/panitia/candidate', candidateRouter)
+app.use('/panitia', committeeRouter)
+app.use('/panitia/dashboard', dashboardCommitteeRouter)
+app.use('/panitia/department', departmentRouter)
+app.use('/panitia/enrollmentYear', enrollmentYearRouter)
+app.use('/panitia/faculty', facultyRouter)
+app.use('/panitia/major', majorRouter)
+app.use('/panitia/participation', participationRouter)
 
 //folder participant
 app.use('/participant', participantRouter)
