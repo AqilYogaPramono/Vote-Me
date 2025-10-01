@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const modelCommittees = require('../../model/committees')
+const committees = require('../../model/committees')
 
 router.get('/', async (req, res) => {
     try {
-        const committeesProcess = await modelCommittees.getCountCommittesProcess()
-        const committeesActive = await modelCommittees.getCountCommittesActive()
+        const committeesProcess = await committees.getCountCommittesProcess()
+        const committeesActive = await committees.getCountCommittesActive()
 
         res.render('admin/dashboard', { committeesProcess, committeesActive })
     } catch (err) {
