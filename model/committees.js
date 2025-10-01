@@ -63,6 +63,24 @@ class committees {
             throw err
         }
     }
+
+    static async getCommitees() {
+        try {
+            const [rows] = await connection.query(`SELECT id, name, email, status FROM committees`)
+            return rows
+        } catch (err) {
+            throw err
+        }
+    }
+
+    static async updateStatusCommittee(id, data) {
+        try {
+            const [result] = await connection.query(`UPDATE committees SET status = ? WHERE id = ?`, [data.status, id])
+            return result
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = committees

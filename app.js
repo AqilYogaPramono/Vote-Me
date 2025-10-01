@@ -66,7 +66,7 @@ app.use('/', indexRouter)
 
 //folder admin
 app.use('/admin/dashboard', adminDashboard)
-app.use('/admin/committee', adminCommiteeRouter)
+app.use('/admin/panitia', adminCommiteeRouter)
 
 //folder auth
 app.use('/', authRouter)

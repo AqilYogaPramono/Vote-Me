@@ -1,0 +1,113 @@
+<%- include('../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Kelola Panitia' }) %>
+<%- include('../partials/nav-sides/__nav-sideAdmin.ejs') %>
+<div class="main-panel">
+    <%- include('../partials/messages/__messageCommitteeAndAdmin.ejs') %>
+    <div class="content-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Daftar Panitia</h4>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-hover table-stacked">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Nama</th>
+                          <th>Email</th>
+                          <th>Status</th>
+                          <th style="width: 220px;" class="text-right">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (Array.isArray(committees) && committees.length) { %>
+                          <% for (var i = 0; i < committees.length; i++) { var item = committees[i]; %>
+                            <tr>
+                              <td data-label="ID"><%= i + 1 %></td>
+                              <td data-label="Nama"><%= item.name %></td>
+                              <td data-label="Email"><%= item.email %></td>
+                              <td data-label="Status">
+                                <% var st = (item.status || '').toLowerCase(); %>
+                                <span class="badge badge-status 
+                                  <%= st === 'active' ? 'badge-status-active' : (st === 'non-active' ? 'badge-status-nonactive' : 'badge-status-process') %>">
+                                  <%= item.status %>
+                                </span>
+                              </td>
+                              <td class="text-right" data-label="Aksi">
+                                <div class="btn-actions">
+                                  <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modalEditStatus-<%= i %>">Ubah Status</button>
+                                  <% if ((item.status || '').toLowerCase() === 'non-active') { %>
+                                  <button type="button" class="btn btn-sm btn-outline-danger btn-delete" data-url="/admin/commitee/delete/<%= item.id %>">Hapus</button>
+                                  <% } %>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <div class="modal fade modal-below-navbar" id="modalEditStatus-<%= i %>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <form action="/admin/panitia/edit/<%= item.id %>" method="POST" data-loading>
+                                    <div class="modal-header">
+                                      <h5 class="modal-title">Ubah Status Panitia</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="form-group mb-0">
+                                        <label>Status</label>
+                                        <select name="status" class="form-control" required>
+                                          <option value="Active" <%= (item.status === 'Active') ? 'selected' : '' %>>Active</option>
+                                          <option value="Non-Active" <%= (item.status === 'Non-Active') ? 'selected' : '' %>>Non-Active</option>
+                                          <option value="Process" <%= (item.status === 'Process') ? 'selected' : '' %>>Process</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+                                      <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="3" class="text-center">Belum ada data</td>
+                          </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-below-navbar" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Konfirmasi Hapus</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin menghapus data ini?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmDelete">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/scripts/__scriptCommitteeAndAdmin.ejs') %>
