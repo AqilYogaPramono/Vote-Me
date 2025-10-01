@@ -4,6 +4,8 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 require('dotenv').config()
+var session = require('express-session')
+var flash = require('express-flash')
 
 var indexRouter = require('./routes/index')
 
@@ -44,6 +46,21 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+//middleware untuk menyimpan data login
+app.use(session({
+    secret: process.env.SECRET_SESSION,
+    resave: false,
+    saveUninitialized: true,
+    rolling: true,
+    cookie: {
+        secure: false, //ubah ke true jika sudah di hosting 
+        maxAge: 600000000
+    }
+}))
+
+//middleware untuk mengirim pesan
+app.use(flash())
 
 app.use('/', indexRouter)
 

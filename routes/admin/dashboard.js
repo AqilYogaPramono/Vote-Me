@@ -7,9 +7,6 @@ router.get('/', async (req, res) => {
         const committeesProcess = await committees.getCountCommittesProcess()
         const committeesActive = await committees.getCountCommittesActive()
 
-        console.log(committeesProcess)
-        console.log(committeesActive)
-
         res.render('admin/dashboard', { committeesProcess, committeesActive })
     } catch (err) {
         console.log(err)
