@@ -313,6 +313,32 @@
 .border-primary { border-color: var(--brand-primary) !important; }
 .badge-primary { background-color: var(--brand-primary) !important; }
 
+/* dashboard */
+.dashboard-header { gap: .75rem; }
+.dashboard-title { font-size: 1.25rem; font-weight: 700; margin: 0; }
+.dashboard-subtitle { font-size: .95rem; color: #6b7280; }
+
+.stat-card { border: 1px solid rgba(17,24,39,.06); border-radius: 14px; overflow: hidden; }
+.stat-card .card-body { padding: 18px 18px; }
+.stat-label { font-size: .9rem; color: #6b7280; margin-bottom: 4px; }
+.stat-number { font-size: 2rem; font-weight: 800; letter-spacing: .2px; }
+.stat-icon { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; color: #0f172a; }
+.stat-icon i { font-size: 22px; line-height: 1; }
+.bg-soft-primary { background: rgba(15,142,200,.12); color: #0F8EC8; }
+.bg-soft-success { background: rgba(16,185,129,.12); color: #10b981; }
+
+@media (min-width: 576px) {
+    .dashboard-title { font-size: 1.35rem; }
+}
+
+@media (min-width: 992px) {
+    .dashboard-title { font-size: 1.5rem; }
+    .stat-card .card-body { padding: 20px 22px; }
+}
+
+/* small gap utility */
+.gap-2 { gap: .5rem; }
+
 /* buttons */
 .btn-primary {
     background-color: var(--brand-primary) !important;

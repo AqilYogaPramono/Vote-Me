@@ -3,8 +3,35 @@
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-                <h1>ini halaman dashboard admin</h1>
+            <div class="col-12 col-sm-6 col-lg-6 grid-margin stretch-card">
+                <div class="stat-card card w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <div class="stat-label">Panitia Dalam Proses</div>
+                                <div class="stat-number" data-count="<%= committeesProcess.total_committees_process %>"><%= committeesProcess.total_committees_process %></div>
+                            </div>
+                            <div class="stat-icon bg-soft-primary">
+                                <i class="mdi mdi-account-clock"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-6 grid-margin stretch-card">
+                <div class="stat-card card w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <div class="stat-label">Panitia Aktif</div>
+                                <div class="stat-number" data-count="<%= committeesActive.total_committees_active %>"><%= committeesActive.total_committees_active %></div>
+                            </div>
+                            <div class="stat-icon bg-soft-success">
+                                <i class="mdi mdi-account-group"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

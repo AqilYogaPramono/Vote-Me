@@ -45,6 +45,24 @@ class committees {
             throw err
         }
     }
+
+    static async getCountCommittesProcess() {
+        try {
+            const [rows] = await connection.query(`SELECT COUNT(*) as total_committees_process FROM committees WHERE status = 'Process'`)
+            return rows[0]
+        } catch (err) {
+            throw err
+        }
+    }
+
+    static async getCountCommittesActive() {
+        try {
+            const [rows] = await connection.query(`SELECT COUNT(*) as total_committees_active FROM committees WHERE status = 'Active'`)
+            return rows[0]
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = committees
