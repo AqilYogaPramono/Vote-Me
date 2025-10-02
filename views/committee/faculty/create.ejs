@@ -1,0 +1,30 @@
+<%- include('../../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Tambah Fakultas' }) %>
+<%- include('../../partials/nav-sides/__nav-sideCommite.ejs') %>
+
+<div class="main-panel">
+    <%- include('../../partials/messages/__messageCommitteeAndAdmin.ejs') %>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Tambah Fakultas</h4>
+                  <p class="card-description">Masukkan nama fakultas baru</p>
+                  <form action="/panitia/fakultas/buat" method="POST" data-loading>
+                    <div class="form-group">
+                      <label for="faculty_name">Nama Fakultas</label>
+                      <input type="text" class="form-control" id="faculty_name" name="faculty_name" placeholder="Masukkan nama fakultas, contoh: Fakultas Teknik" required>
+                    </div>
+                    <div class="d-flex">
+                      <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                      <a href="/panitia/fakultas" class="btn btn-light" data-loading>Kembali</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/scripts/__scriptCommitteeAndAdmin.ejs') %>
