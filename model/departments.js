@@ -1,9 +1,27 @@
 const connection = require('../config/database')
 
-class departements {
+class departments {
     static async getAllDepartments() {
         try {
-            const [rows] = await connection.query(`SELECT * FROM departments`)
+            const [rows] = await connection.query(`
+                SELECT d.*, f.faculty_name 
+                FROM departments d 
+                LEFT JOIN faculties f ON d.faculty_id = f.id
+            `)
+            return rows
+        } catch (err) {
+            throw err
+        }
+    }
+
+    static async getDepartmentsByFaculty(facultyId) {
+        try {
+            const [rows] = await connection.query(`
+                SELECT d.*, f.faculty_name 
+                FROM departments d 
+                LEFT JOIN faculties f ON d.faculty_id = f.id 
+                WHERE d.faculty_id = ?
+            `, [facultyId])
             return rows
         } catch (err) {
             throw err
@@ -56,4 +74,4 @@ class departements {
     }
 }
 
-module.exports = departements
+module.exports = departments
