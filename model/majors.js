@@ -45,6 +45,15 @@ class majors {
             throw err
         }
     }
+
+    static async getCountMajors() {
+        try {
+            const [rows] = await connection.query(`SELECT COUNT(*) AS count_major FROM majors`)
+            return rows[0]
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = majors

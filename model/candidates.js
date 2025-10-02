@@ -45,6 +45,15 @@ class candidate {
             throw err
         }
     }
+
+    static async getCountCandidates() {
+        try {
+            const [rows] = await connection.query(`SELECT COUNT(*) AS count_candidate FROM candidates`)
+            return rows[0]
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = candidate

@@ -45,6 +45,15 @@ class users {
             throw err
         }
     }
+
+    static async getCountUsers() {
+        try {
+            const [rows] = await connection.query(`SELECT COUNT(*) AS count_user FROM users`)
+            return rows[0]
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = users

@@ -1,14 +1,107 @@
-<%- include('../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Dashboard Admin' }) %>
+<%- include('../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Dashboard Panitia' }) %>
 <%- include('../partials/nav-sides/__nav-sideCommite.ejs') %>
+<%- include('../partials/messages/__messageCommitteeAndAdmin.ejs') %>
 
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-                <h1>ini halaman dashboard Panitia</h1>
+            <div class="col-12 mb-4">
+                <div class="dashboard-header d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between">
+                    <div>
+                        <h1 class="dashboard-title text-dark mb-1">Dashboard Panitia</h1>
+                        <p class="dashboard-subtitle mb-0">Kelola data pemilihan dengan mudah</p>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <div class="row mb-4">
+            <div class="col-lg-6 col-md-6 col-12 mb-4">
+                <div class="card stat-card h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="stat-label">Total Pengguna</div>
+                            <div class="stat-number text-primary"><%= countUsers.count_user %></div>
+                        </div>
+                        <div class="stat-icon bg-soft-primary">
+                            <i class="mdi mdi-account-multiple"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-12 mb-4">
+                <div class="card stat-card h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="stat-label">Total Kandidat</div>
+                            <div class="stat-number text-success"><%= countCandidates.count_candidate %></div>
+                        </div>
+                        <div class="stat-icon bg-soft-success">
+                            <i class="mdi mdi-account-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12 mb-4">
+                <div class="card stat-card h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="stat-label">Tahun Angkatan</div>
+                            <div class="stat-number text-info"><%= countEnrollmentYears.count_enrollment_year %></div>
+                        </div>
+                        <div class="stat-icon bg-soft-info">
+                            <i class="mdi mdi-calendar-clock"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 mb-4">
+                <div class="card stat-card h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="stat-label">Total Fakultas</div>
+                            <div class="stat-number text-warning"><%= countFaculties.count_faculty %></div>
+                        </div>
+                        <div class="stat-icon bg-soft-warning">
+                            <i class="mdi mdi-school"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 mb-4">
+                <div class="card stat-card h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="stat-label">Total Departemen</div>
+                            <div class="stat-number text-secondary"><%= countDepartments.count_department %></div>
+                        </div>
+                        <div class="stat-icon bg-soft-secondary">
+                            <i class="mdi mdi-book-open-page-variant"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 mb-4">
+                <div class="card stat-card h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="stat-label">Total jurusan</div>
+                            <div class="stat-number text-dark"><%= countMajors.count_major %></div>
+                        </div>
+                        <div class="stat-icon bg-soft-primary">
+                            <i class="mdi mdi-book-multiple"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

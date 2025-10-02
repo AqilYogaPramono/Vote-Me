@@ -45,6 +45,15 @@ class faculties {
             throw err
         }
     }
+
+    static async getCountFaculties() {
+        try {
+            const [rows] = await connection.query(`SELECT COUNT(*) AS count_faculty FROM faculties`)
+            return rows[0]
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = faculties

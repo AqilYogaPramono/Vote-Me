@@ -45,6 +45,15 @@ class enrollmentYears {
             throw err
         }
     }
+
+    static async getCountEnrollmentYears() {
+        try {
+            const [rows] = await connection.query(`SELECT COUNT(*) AS count_enrollment_year FROM enrollment_years`)
+            return rows[0]
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = enrollmentYears

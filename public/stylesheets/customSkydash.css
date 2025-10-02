@@ -326,6 +326,10 @@
 .stat-icon i { font-size: 22px; line-height: 1; }
 .bg-soft-primary { background: rgba(15,142,200,.12); color: #0F8EC8; }
 .bg-soft-success { background: rgba(16,185,129,.12); color: #10b981; }
+.bg-soft-info { background: rgba(14,165,233,.12); color: #0ea5e9; }
+.bg-soft-warning { background: rgba(245,158,11,.12); color: #f59e0b; }
+.bg-soft-secondary { background: rgba(107,114,128,.12); color: #6b7280; }
+.bg-soft-dark { background: rgba(55,65,81,.12); color: #374151; }
 
 @media (min-width: 576px) {
     .dashboard-title { font-size: 1.35rem; }
