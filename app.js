@@ -25,7 +25,7 @@ const departmentRouter = require('./routes/committee/department')
 const enrollmentYearRouter = require('./routes/committee/enrollmentYear')
 const facultyRouter = require('./routes/committee/faculty')
 const majorRouter = require('./routes/committee/major')
-const participationRouter = require('./routes/committee/participant')
+const commiteeParticipationRouter = require('./routes/committee/participant')
 
 //folder participant
 const participantRouter = require('./routes/participant/participant')
@@ -81,7 +81,7 @@ app.use('/panitia/department', departmentRouter)
 app.use('/panitia/enrollmentYear', enrollmentYearRouter)
 app.use('/panitia/faculty', facultyRouter)
 app.use('/panitia/major', majorRouter)
-app.use('/panitia/participation', participationRouter)
+app.use('/panitia/peserta', commiteeParticipationRouter)
 
 //folder participant
 app.use('/participant', participantRouter)

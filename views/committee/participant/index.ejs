@@ -1,0 +1,117 @@
+<%- include('../../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Kelola Peserta' }) %>
+<%- include('../../partials/nav-sides/__nav-sideCommite.ejs') %>
+<div class="main-panel">
+    <%- include('../../partials/messages/__messageCommitteeAndAdmin.ejs') %>
+    <div class="content-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Daftar Peserta</h4>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-hover table-stacked">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>NIM</th>
+                          <th>Angkatan</th>
+                          <th>Jurusan</th>
+                          <th>Status</th>
+                          <th style="width: 220px;" class="text-right">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (Array.isArray(participants) && participants.length) { %>
+                          <% for (var i = 0; i < participants.length; i++) { var item = participants[i]; %>
+                            <tr>
+                              <td data-label="No"><%= i + 1 %></td>
+                              <td data-label="Nama"><%= item.name %></td>
+                              <td data-label="NIM"><%= item.student_id %></td>
+                              <td data-label="Angkatan"><%= item.year %></td>
+                              <td data-label="Jurusan"><%= item.major_name || '-' %></td>
+                              <td data-label="Status">
+                                <% var st = (item.user_status || '').toLowerCase(); %>
+                                <span class="badge badge-status 
+                                  <%= st === 'active' ? 'badge-status-active' : (st === 'non-active' ? 'badge-status-nonactive' : 'badge-status-process') %>">
+                                  <%= item.user_status || 'Process' %>
+                                </span>
+                              </td>
+                              <td class="text-right" data-label="Aksi">
+                                <div class="btn-actions">
+                                  <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modalEditStatus-<%= i %>">Ubah Status</button>
+                                  <% if ((item.user_status || '').toLowerCase() === 'non-active') { %>
+                                  <button type="button" class="btn btn-sm btn-outline-danger btn-delete" data-url="/panitia/peserta/delete/<%= item.id %>">Hapus</button>
+                                  <% } %>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <div class="modal fade modal-below-navbar" id="modalEditStatus-<%= i %>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <form action="/panitia/peserta/update-status/<%= item.id %>" method="POST" data-loading>
+                                    <div class="modal-header">
+                                      <h5 class="modal-title">Ubah Status Peserta</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="form-group mb-0">
+                                        <label>Status</label>
+                                        <select name="status" class="form-control" required>
+                                          <option value="Active" <%= (item.user_status === 'Active') ? 'selected' : '' %>>Aktif</option>
+                                          <option value="Non-Active" <%= (item.user_status === 'Non-Active') ? 'selected' : '' %>>Tidak Aktif</option>
+                                          <option value="Process" <%= (item.user_status === 'Process') ? 'selected' : '' %>>Proses</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+                                      <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="7" class="text-center">Belum ada data peserta</td>
+                          </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-below-navbar" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Konfirmasi Hapus</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin menghapus data peserta ini?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmDelete">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/scripts/__scriptCommitteeAndAdmin.ejs') %>

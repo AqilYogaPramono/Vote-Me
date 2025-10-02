@@ -54,6 +54,24 @@ class users {
             throw err
         }
     }
+
+    static async getparticipants() {
+        try {
+            const [rows] = await connection.query(`SELECT u.id, u.name, u.gender, u.student_id, ey.year, m.major_name, d.department_name, f.faculty_name, u.status AS user_status FROM users u LEFT JOIN enrollment_years ey ON u.enrollment_year_id = ey.id LEFT JOIN majors m ON u.major_id = m.id LEFT JOIN departments d ON m.department_id = d.id LEFT JOIN faculties f ON d.faculty_id = f.id`)
+            return rows
+        } catch (err) {
+            throw err
+        }
+    }
+
+    static async updateStatus(id, status) {
+        try {
+            const [result] = await connection.query(`UPDATE users SET status = ? WHERE id = ?`, [status, id])
+            return result
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 module.exports = users
