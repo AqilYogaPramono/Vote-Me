@@ -1,0 +1,73 @@
+<%- include('../../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Kelola Tahun Angkatan' }) %>
+<%- include('../../partials/nav-sides/__nav-sideCommite.ejs') %>
+
+<div class="main-panel">
+    <%- include('../../partials/messages/__messageCommitteeAndAdmin.ejs') %>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Data Tahun Angkatan</h4>
+                    <a href="/panitia/tahun-angkatan/create" class="btn btn-primary btn-sm" data-loading>Tambah Tahun Angkatan</a>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-hover table-stacked">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Tahun Angkatan</th>
+                          <th style="width: 160px;" class="text-right">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (Array.isArray(enrollmentyears) && enrollmentyears.length) { %>
+                          <% for (var i = 0; i < enrollmentyears.length; i++) { var item = enrollmentyears[i]; %>
+                            <tr>
+                              <td data-label="No"><%= i + 1 %></td>
+                              <td data-label="Tahun Angkatan"><%= item.year %></td>
+                              <td class="text-right" data-label="Aksi">
+                                <div class="btn-actions">
+                                  <a href="/panitia/tahun-angkatan/edit/<%= item.id %>" class="btn btn-sm btn-outline-info" data-loading>Edit</a>
+                                  <button type="button" class="btn btn-sm btn-outline-danger btn-delete" data-url="/panitia/tahun-angkatan/delete/<%= item.id %>">Hapus</button>
+                                </div>
+                              </td>
+                            </tr>
+                          <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="3" class="text-center">Belum ada data tahun angkatan</td>
+                          </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-below-navbar" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Konfirmasi Hapus</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin menghapus data ini?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmDelete">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/scripts/__scriptCommitteeAndAdmin.ejs') %>
