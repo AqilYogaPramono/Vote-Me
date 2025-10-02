@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index')
 //folder admin
 const adminDashboard = require('./routes/admin/dashboard')
 const adminCommiteeRouter = require('./routes/admin/commitee')
+const adminChangePassword = require('./routes/admin/admin')
 
 //folder auth
 const authRouter = require('./routes/auth/auth')
@@ -67,6 +68,7 @@ app.use('/', indexRouter)
 //folder admin
 app.use('/admin/dashboard', adminDashboard)
 app.use('/admin/panitia', adminCommiteeRouter)
+app.use('/admin', adminChangePassword)
 
 //folder auth
 app.use('/', authRouter)

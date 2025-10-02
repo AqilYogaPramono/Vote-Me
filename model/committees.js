@@ -1,4 +1,5 @@
 const connection = require('../config/database')
+const bcrypt = require('bcryptjs')
 
 class committees {
     static async getAllCommittees() {
@@ -76,6 +77,17 @@ class committees {
     static async updateStatusCommittee(id, data) {
         try {
             const [result] = await connection.query(`UPDATE committees SET status = ? WHERE id = ?`, [data.status, id])
+            return result
+        } catch (err) {
+            throw err
+        }
+    }
+
+    static async updatePasswordAdmin(data, id) {
+        try {
+            const passwordHash = await bcrypt.hash(data.newPassword, 10)
+            const passwordUpdate = { password: passwordHash }
+            const [result] = await connection.query(`UPDATE committees SET ? WHERE id = ?`, [passwordUpdate, id])
             return result
         } catch (err) {
             throw err
