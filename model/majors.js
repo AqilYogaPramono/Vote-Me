@@ -3,7 +3,16 @@ const connection = require('../config/database')
 class majors {
     static async getAllMajors() {
         try {
-            const [rows] = await connection.query(`SELECT * FROM majors`)
+            const [rows] = await connection.query(`SELECT m.*, d.department_name, f.faculty_name FROM majors m LEFT JOIN departments d ON m.department_id = d.id LEFT JOIN faculties f ON d.faculty_id = f.id`)
+            return rows
+        } catch (err) {
+            throw err
+        }
+    }
+
+    static async getMajorsByDepartment(departmentId) {
+        try {
+            const [rows] = await connection.query(`SELECT m.*, d.department_name, f.faculty_name FROM majors m LEFT JOIN departments d ON m.department_id = d.id LEFT JOIN faculties f ON d.faculty_id = f.id WHERE m.department_id = ?`, [departmentId])
             return rows
         } catch (err) {
             throw err

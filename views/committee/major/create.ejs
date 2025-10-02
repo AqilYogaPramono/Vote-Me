@@ -1,0 +1,44 @@
+<%- include('../../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Tambah Jurusan' }) %>
+<%- include('../../partials/nav-sides/__nav-sideCommite.ejs') %>
+
+<div class="main-panel">
+    <%- include('../../partials/messages/__messageCommitteeAndAdmin.ejs') %>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Tambah Jurusan</h4>
+                  <p class="card-description">Masukkan data jurusan baru</p>
+                  <form action="/panitia/jurusan/buat" method="POST" data-loading>
+                    <div class="form-group">
+                      <label for="department_id">Departemen</label>
+                      <select class="form-control" id="department_id" name="department_id" required>
+                        <option value="">Pilih Departemen</option>
+                        <% if (Array.isArray(departments) && departments.length) { %>
+                          <% for (var i = 0; i < departments.length; i++) { var department = departments[i]; %>
+                            <option value="<%= department.id %>"><%= department.department_name %> - <%= department.faculty_name || 'Fakultas tidak diketahui' %></option>
+                          <% } %>
+                        <% } %>
+                      </select>
+                      <small class="form-text text-muted">Pilih departemen beserta fakultasnya</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="major_name">Nama Jurusan</label>
+                      <input type="text" class="form-control" id="major_name" name="major_name" placeholder="Masukkan nama jurusan, contoh: Sistem Informasi" required>
+                    </div>
+                    <div class="d-flex">
+                      <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                      <a href="/panitia/jurusan" class="btn btn-light" data-loading>Kembali</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../../partials/scripts/__scriptCommitteeAndAdmin.ejs') %>
+
