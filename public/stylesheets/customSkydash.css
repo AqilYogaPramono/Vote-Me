@@ -1,3 +1,49 @@
+/* Responsive sizing for app message modal */
+#appMessageModal .modal-dialog {
+  max-width: 420px;
+}
+
+@media (min-width: 992px) {
+  #appMessageModal .modal-dialog {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  #appMessageModal .modal-dialog {
+    margin: 1rem;
+  }
+  #appMessageModal .modal-body {
+    font-size: 0.95rem;
+  }
+  #appMessageModal .btn {
+    padding: 0.4rem 0.9rem;
+  }
+}
+
+/* Image preview modal sizing */
+#imagePreviewModal .modal-dialog {
+  max-width: 92vw;
+}
+
+@media (min-width: 992px) {
+  #imagePreviewModal .modal-dialog {
+    max-width: 900px;
+  }
+}
+
+#imagePreviewModal .modal-body {
+  padding: 0.75rem 1rem;
+}
+
+#imagePreviewModal #modal-preview-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 78vh; /* keep within viewport */
+  object-fit: contain;
+  margin: 0 auto;
+}
 /* delete container padding  start */
 .container,
 .container-fluid,
@@ -542,4 +588,252 @@ html body .sidebar .nav .nav-item.active > .nav-link,
         background: var(--sidebar-primary) !important;
         background-color: var(--sidebar-primary) !important;
     }
+}
+
+/* =====================
+   Summernote Rich Text Editor Styles
+   ===================== */
+
+/* Summernote editor container */
+.note-editor {
+    border: 1px solid #e3e6f0 !important;
+    border-radius: 0.35rem !important;
+    box-shadow: none !important;
+}
+
+.note-editor.note-frame {
+    border: 1px solid #e3e6f0 !important;
+}
+
+.note-editor.note-frame.codeview .note-editing-area .note-codable {
+    border: none !important;
+}
+
+/* Summernote toolbar styling */
+.note-toolbar {
+    background-color: #f8f9fc !important;
+    border-bottom: 1px solid #e3e6f0 !important;
+    padding: 8px 15px !important;
+}
+
+.note-toolbar .note-btn-group {
+    margin-right: 8px !important;
+}
+
+.note-toolbar .note-btn {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    color: #5a5c69 !important;
+    padding: 6px 8px !important;
+    border-radius: 0.25rem !important;
+    font-size: 12px !important;
+    transition: all 0.2s ease !important;
+}
+
+.note-toolbar .note-btn:hover {
+    background-color: #e3e6f0 !important;
+    color: var(--brand-primary) !important;
+}
+
+.note-toolbar .note-btn.active,
+.note-toolbar .note-btn:active {
+    background-color: var(--brand-primary) !important;
+    color: white !important;
+    border-color: var(--brand-primary) !important;
+}
+
+/* Summernote dropdown styling */
+.note-dropdown-menu {
+    border: 1px solid #e3e6f0 !important;
+    border-radius: 0.35rem !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+}
+
+.note-dropdown-menu .dropdown-item {
+    color: #5a5c69 !important;
+    padding: 8px 16px !important;
+    transition: all 0.2s ease !important;
+}
+
+.note-dropdown-menu .dropdown-item:hover {
+    background-color: #f8f9fc !important;
+    color: var(--brand-primary) !important;
+}
+
+/* Summernote editing area */
+.note-editing-area {
+    border: none !important;
+}
+
+.note-editable {
+    padding: 15px !important;
+    min-height: 150px !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: #5a5c69 !important;
+    background-color: #fff !important;
+}
+
+.note-editable:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Summernote placeholder */
+.note-placeholder {
+    color: #858796 !important;
+    font-style: italic !important;
+}
+
+/* Summernote status bar */
+.note-status-output {
+    background-color: #f8f9fc !important;
+    border-top: 1px solid #e3e6f0 !important;
+    color: #858796 !important;
+    font-size: 12px !important;
+    padding: 8px 15px !important;
+}
+
+/* Summernote resizer */
+.note-resizebar {
+    background-color: #f8f9fc !important;
+    border-top: 1px solid #e3e6f0 !important;
+}
+
+.note-icon-bar {
+    background-color: #858796 !important;
+}
+
+/* Summernote modal styling */
+.note-modal .modal-dialog {
+    max-width: 600px !important;
+}
+
+.note-modal .modal-header {
+    background-color: var(--brand-primary) !important;
+    color: white !important;
+    border-bottom: none !important;
+}
+
+.note-modal .modal-header .close {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
+.note-modal .modal-header .close:hover {
+    opacity: 1 !important;
+}
+
+.note-modal .modal-body {
+    padding: 20px !important;
+}
+
+.note-modal .form-group label {
+    font-weight: 600 !important;
+    color: #5a5c69 !important;
+    margin-bottom: 8px !important;
+}
+
+.note-modal .form-control {
+    border: 1px solid #e3e6f0 !important;
+    border-radius: 0.35rem !important;
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+}
+
+.note-modal .form-control:focus {
+    border-color: var(--brand-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(15, 142, 200, 0.25) !important;
+}
+
+/* Summernote popover styling */
+.note-popover .popover {
+    border: 1px solid #e3e6f0 !important;
+    border-radius: 0.35rem !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+}
+
+.note-popover .popover-content {
+    padding: 8px !important;
+}
+
+.note-popover .btn {
+    margin: 2px !important;
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+}
+
+/* Summernote color palette */
+.note-color-palette {
+    border-radius: 0.25rem !important;
+    overflow: hidden !important;
+}
+
+.note-color-palette .note-color-btn {
+    border: 1px solid #fff !important;
+    transition: all 0.2s ease !important;
+}
+
+.note-color-palette .note-color-btn:hover {
+    transform: scale(1.1) !important;
+    border-color: #333 !important;
+    z-index: 10 !important;
+}
+
+/* Summernote table styling */
+.note-editable table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 10px 0 !important;
+}
+
+.note-editable table td,
+.note-editable table th {
+    border: 1px solid #e3e6f0 !important;
+    padding: 8px 12px !important;
+    text-align: left !important;
+}
+
+.note-editable table th {
+    background-color: #f8f9fc !important;
+    font-weight: 600 !important;
+}
+
+/* Summernote responsive adjustments */
+@media (max-width: 768px) {
+    .note-toolbar {
+        padding: 5px 10px !important;
+    }
+    
+    .note-toolbar .note-btn {
+        padding: 4px 6px !important;
+        font-size: 11px !important;
+    }
+    
+    .note-editable {
+        padding: 10px !important;
+        font-size: 13px !important;
+    }
+    
+    .note-modal .modal-dialog {
+        max-width: 95% !important;
+        margin: 10px auto !important;
+    }
+}
+
+/* Focus state for better accessibility */
+.note-editor.note-frame:focus-within {
+    border-color: var(--brand-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(15, 142, 200, 0.25) !important;
+}
+
+/* Custom validation styling for summernote */
+.summernote-error .note-editor.note-frame {
+    border-color: #e74a3b !important;
+}
+
+.summernote-error .note-editor.note-frame:focus-within {
+    border-color: #e74a3b !important;
+    box-shadow: 0 0 0 0.2rem rgba(231, 74, 59, 0.25) !important;
 }

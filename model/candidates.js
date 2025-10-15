@@ -10,6 +10,15 @@ class candidate {
         }
     }
 
+    static async getCandidates() {
+        try {
+            const [rows] = await connection.query(`SELECT id, candidate_number, candidate_photo, chair_candidate_name, vice_chair_candidate_name FROM candidates`)
+            return rows
+        } catch (err) {
+            throw err
+        }
+    }
+
         static async store(data) {
         try {
             const [result] = await connection.query(`INSERT INTO candidates SET ?`, [data])

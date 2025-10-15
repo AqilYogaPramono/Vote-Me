@@ -67,7 +67,7 @@ class committees {
 
     static async getCommitees() {
         try {
-            const [rows] = await connection.query(`SELECT id, name, email, status FROM committees`)
+            const [rows] = await connection.query(`SELECT id, name, email, user_level, status FROM committees`)
             return rows
         } catch (err) {
             throw err

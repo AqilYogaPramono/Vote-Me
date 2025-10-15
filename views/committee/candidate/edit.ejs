@@ -1,0 +1,124 @@
+<%- include('../../partials/headers/__headerCommitteeAndAdmin.ejs', { title: 'Edit Kandidat' }) %>
+<%- include('../../partials/nav-sides/__nav-sideCommite.ejs') %>
+
+<div class="main-panel">
+    <%- include('../../partials/messages/__messageCommitteeAndAdmin.ejs') %>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Edit Kandidat</h4>
+                  <p class="card-description">Ubah data kandidat yang sudah ada</p>
+                  <form action="/panitia/kandidat/update/<%= candidate.id %>" method="POST" enctype="multipart/form-data" data-loading>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="candidate_number">Nomor Urut Kandidat</label>
+                          <input type="number" class="form-control" id="candidate_number" name="candidate_number" value="<%= candidate.candidate_number %>" placeholder="Masukkan nomor urut, contoh: 1" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="candidate_photo">Foto Kandidat</label>
+                          <input type="file" class="form-control" id="candidate_photo" name="candidate_photo" accept="image/*">
+                          <small class="form-text text-muted">Format: JPG, JPEG, PNG, WEBP. Maksimal 5MB. Kosongkan jika tidak ingin mengubah foto.</small>
+                          <% if (candidate.candidate_photo) { %>
+                            <div class="mt-2" id="current-photo">
+                              <img src="/images/candidates/<%= candidate.candidate_photo %>" alt="Foto Kandidat Saat Ini" class="img-thumbnail" style="max-width: 200px; max-height: 200px; cursor: pointer;" data-current-photo="<%= candidate.candidate_photo %>">
+                              <p class="text-muted mt-1">Foto saat ini - Klik untuk memperbesar</p>
+                            </div>
+                          <% } %>
+                          <div id="photo-preview" class="mt-2" style="display: none;">
+                            <img id="preview-image" src="" alt="Preview Foto Baru" class="img-thumbnail" style="max-width: 200px; max-height: 200px; cursor: pointer;">
+                            <p class="text-muted mt-1">Preview foto baru - Klik untuk memperbesar</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="chair_candidate_name">Nama Ketua Kandidat</label>
+                          <input type="text" class="form-control" id="chair_candidate_name" name="chair_candidate_name" value="<%= candidate.chair_candidate_name %>" placeholder="Masukkan nama ketua kandidat" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="vice_chair_candidate_name">Nama Wakil Ketua Kandidat</label>
+                          <input type="text" class="form-control" id="vice_chair_candidate_name" name="vice_chair_candidate_name" value="<%= candidate.vice_chair_candidate_name %>" placeholder="Masukkan nama wakil ketua kandidat" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="vision">Visi</label>
+                      <textarea class="form-control summernote" id="vision" name="vision" placeholder="Masukkan visi kandidat" required><%= candidate.vision %></textarea>
+                      <small class="form-text text-muted">Gunakan editor untuk memformat teks (bold, italic, list, dll.)</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="mission">Misi</label>
+                      <textarea class="form-control summernote" id="mission" name="mission" placeholder="Masukkan misi kandidat" required><%= candidate.mission %></textarea>
+                      <small class="form-text text-muted">Gunakan editor untuk memformat teks (bold, italic, list, dll.)</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="work_program">Program Kerja</label>
+                      <textarea class="form-control summernote" id="work_program" name="work_program" placeholder="Masukkan program kerja kandidat" required><%= candidate.work_program %></textarea>
+                      <small class="form-text text-muted">Gunakan editor untuk memformat teks (bold, italic, list, dll.)</small>
+                    </div>
+
+                    <div class="d-flex">
+                      <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                      <a href="/panitia/kandidat" class="btn btn-light" data-loading>Kembali</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal untuk preview gambar -->
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Preview Foto Kandidat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="modal-preview-image" src="" alt="Preview Foto" class="img-fluid">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal pesan khusus halaman ini -->
+<div class="modal fade" id="appMessageModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="appMessageModalTitle">Informasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="appMessageModalBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/scripts/__scriptCommitteeAndAdmin.ejs') %>
+

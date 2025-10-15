@@ -74,7 +74,7 @@ app.use('/admin', adminChangePassword)
 app.use('/', authRouter)
 
 //folder committee
-app.use('/panitia/candidate', candidateRouter)
+app.use('/panitia/kandidat', candidateRouter)
 app.use('/panitia', committeeRouter)
 app.use('/panitia/dashboard', dashboardCommitteeRouter)
 app.use('/panitia/departemen', departmentRouter)
